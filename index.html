@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slope Style Roofing LTD | Calgary Roofing Contractor</title>
+  <meta name="description" content="Slope Style Roofing LTD — Calgary's trusted roofing contractor. Roof replacement, repairs, new construction, and storm damage restoration. Call for a free estimate.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            slate: {
+              950: '#0a0f1a',
+              900: '#111827',
+              850: '#162032',
+              800: '#1e293b',
+            },
+            copper: {
+              400: '#d4845a',
+              500: '#c2703e',
+              600: '#a85d30',
+              700: '#8c4d28',
+            },
+            stone: {
+              150: '#eee8e0',
+              250: '#ddd5ca',
+            }
+          },
+          fontFamily: {
+            display: ['DM Serif Display', 'serif'],
+            body: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: #0a0f1a; color: #eee8e0; overflow-x: hidden; }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* Mountain SVG background */
+    .mountain-bg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      z-index: 0;
+    }
+
+    /* Staggered fade-in */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .fade-up-1 { animation-delay: 0.1s; }
+    .fade-up-2 { animation-delay: 0.25s; }
+    .fade-up-3 { animation-delay: 0.4s; }
+    .fade-up-4 { animation-delay: 0.55s; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Glow button */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+    }
+    .btn-glow::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, #d4845a, #c2703e, #8c4d28);
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .btn-glow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(194, 112, 62, 0.35);
+    }
+    .btn-glow:focus-visible {
+      outline: 2px solid #d4845a;
+      outline-offset: 3px;
+    }
+    .btn-glow:active {
+      transform: translateY(0);
+    }
+
+    /* Service card hover */
+    .service-card {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(212, 132, 90, 0.15);
+    }
+
+    /* Divider line */
+    .accent-line {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #c2703e, #d4845a);
+      border-radius: 2px;
+    }
+
+    /* Nav link hover */
+    .nav-link {
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #d4845a;
+      transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .nav-link:hover { color: #d4845a; }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link:focus-visible { outline: 2px solid #d4845a; outline-offset: 4px; border-radius: 2px; }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .mobile-nav.open {
+      transform: translateX(0);
+    }
+
+    /* Subtle parallax on hero text */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-parallax {
+        will-change: transform;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== NAV ==================== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group" aria-label="Slope Style Roofing home">
+        <svg class="w-8 h-8 text-copper-500 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 28 L16 6 L30 28 Z"/>
+          <path d="M8 28 L16 14 L24 28" opacity="0.4"/>
+        </svg>
+        <div class="leading-none">
+          <span class="font-display text-lg text-stone-150 tracking-tight">Slope Style</span>
+          <span class="block text-[10px] font-body font-medium tracking-[0.25em] text-copper-400 uppercase">Roofing LTD</span>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#services" class="nav-link text-sm font-body font-medium text-stone-150/70">Services</a>
+        <a href="#why-us" class="nav-link text-sm font-body font-medium text-stone-150/70">Why Us</a>
+        <a href="#area" class="nav-link text-sm font-body font-medium text-stone-150/70">Service Area</a>
+        <a href="tel:+14032628909" class="btn-glow inline-flex items-center gap-2 bg-copper-500 text-white text-sm font-semibold px-5 py-2.5 rounded-lg">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          (403) 262-8909
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menuBtn" class="md:hidden p-2 text-stone-150/70 hover:text-copper-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-copper-500 rounded" aria-label="Open menu" aria-expanded="false">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile nav panel -->
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-72 bg-slate-900 border-l border-white/5 z-50 flex flex-col p-8 md:hidden">
+      <button id="closeBtn" class="self-end p-2 text-stone-150/70 hover:text-copper-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-copper-500 rounded" aria-label="Close menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+      </button>
+      <div class="flex flex-col gap-6 mt-10">
+        <a href="#services" class="mobile-link block text-lg font-body font-medium text-stone-150/80 hover:text-copper-400 transition-colors">Services</a>
+        <a href="#why-us" class="mobile-link block text-lg font-body font-medium text-stone-150/80 hover:text-copper-400 transition-colors">Why Us</a>
+        <a href="#area" class="mobile-link block text-lg font-body font-medium text-stone-150/80 hover:text-copper-400 transition-colors">Service Area</a>
+        <a href="tel:+14032628909" class="block btn-glow bg-copper-500 text-white text-center font-semibold px-5 py-3 rounded-lg mt-4">(403) 262-8909</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Background layers -->
+    <div class="absolute inset-0">
+      <!-- Hero background image — construction workers on a roof -->
+      <img src="https://images.unsplash.com/photo-1516880967556-b295d8e7b611?w=1920&auto=format&fit=crop&q=80" alt="" class="absolute inset-0 w-full h-full object-cover" style="mix-blend-mode: luminosity; opacity: 0.18;">
+      <!-- Gradient overlays -->
+      <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-850/85 to-slate-900"></div>
+      <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-copper-600/8 rounded-full blur-[120px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-copper-400/5 rounded-full blur-[100px]"></div>
+
+      <!-- Mountain silhouettes -->
+      <svg class="mountain-bg" viewBox="0 0 1440 500" preserveAspectRatio="none" fill="none">
+        <!-- Far range -->
+        <path d="M0 500 L0 280 L120 200 L240 260 L360 180 L480 220 L600 140 L720 190 L840 120 L960 170 L1080 100 L1200 160 L1320 130 L1440 180 L1440 500 Z" fill="#111827" opacity="0.5"/>
+        <!-- Mid range -->
+        <path d="M0 500 L0 340 L180 240 L320 300 L480 200 L640 280 L800 190 L960 260 L1100 200 L1260 280 L1440 220 L1440 500 Z" fill="#111827" opacity="0.7"/>
+        <!-- Near range -->
+        <path d="M0 500 L0 380 L200 320 L400 360 L560 300 L720 350 L880 290 L1040 340 L1200 310 L1440 360 L1440 500 Z" fill="#162032"/>
+      </svg>
+    </div>
+
+    <!-- Hero content -->
+    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center hero-parallax pt-20">
+      <div class="fade-up fade-up-1">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-copper-500/30 bg-copper-500/10 text-copper-400 text-xs font-body font-semibold tracking-wide uppercase mb-8">
+          <span class="w-1.5 h-1.5 rounded-full bg-copper-400"></span>
+          Calgary Roofing Contractor
+        </span>
+      </div>
+      <h1 class="fade-up fade-up-2 font-display text-5xl sm:text-6xl lg:text-7xl text-stone-150 leading-[1.05] tracking-tight mb-6">
+        Roofing Built for<br>
+        <span class="text-copper-400">Alberta's Toughest Weather</span>
+      </h1>
+      <p class="fade-up fade-up-3 font-body text-lg sm:text-xl text-stone-150/60 max-w-2xl mx-auto leading-relaxed mb-10" style="line-height:1.7;">
+        From hailstorms to heavy snow loads, your roof is your first line of defense. Slope Style Roofing delivers expert craftsmanship and durable materials to protect your home — year after year.
+      </p>
+      <div class="fade-up fade-up-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="tel:+14032628909" class="btn-glow inline-flex items-center gap-3 bg-copper-500 hover:bg-copper-600 text-white font-body font-semibold text-base px-8 py-4 rounded-xl shadow-lg shadow-copper-600/20">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Get a Free Estimate
+        </a>
+        <a href="#services" class="inline-flex items-center gap-2 text-stone-150/60 hover:text-copper-400 font-body font-medium text-base transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-copper-500 rounded px-4 py-4">
+          View Our Services
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 fade-up fade-up-4">
+      <div class="w-5 h-9 border-2 border-stone-150/20 rounded-full flex items-start justify-center p-1.5">
+        <div class="w-1 h-2.5 bg-copper-400 rounded-full" style="animation: fadeUp 1.5s ease-in-out infinite alternate;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICES ==================== -->
+  <section id="services" class="relative py-24 lg:py-32 bg-slate-900">
+    <!-- Top fade -->
+    <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950 to-transparent"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <span class="text-copper-400 text-sm font-body font-semibold tracking-[0.2em] uppercase">What We Do</span>
+        <h2 class="font-display text-4xl lg:text-5xl text-stone-150 mt-4 tracking-tight">Our Roofing Services</h2>
+        <div class="accent-line mx-auto mt-6"></div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Service 1: Roof Replacement — aerial view of house with new roof tiles -->
+        <div class="service-card reveal bg-slate-850 border border-white/5 rounded-2xl overflow-hidden group">
+          <div class="relative h-40 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1672627170267-fca17bb54156?w=600&auto=format&fit=crop&q=80" alt="Aerial view of house with new roof being installed" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-850 via-slate-850/40 to-transparent"></div>
+          </div>
+          <div class="p-8 pt-4">
+            <h3 class="font-display text-xl text-stone-150 mb-3">Roof Replacement</h3>
+            <p class="font-body text-stone-150/50 leading-relaxed text-sm" style="line-height:1.7;">Complete tear-off and replacement with premium materials rated for Calgary's extreme climate. Asphalt shingles, metal roofing, and more.</p>
+          </div>
+        </div>
+
+        <!-- Service 2: Roof Repairs — house with roof ripped off / exposed -->
+        <div class="service-card reveal bg-slate-850 border border-white/5 rounded-2xl overflow-hidden group">
+          <div class="relative h-40 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1693639767415-27ff64ce4da2?w=600&auto=format&fit=crop&q=80" alt="House roof under repair with scaffolding" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-850 via-slate-850/40 to-transparent"></div>
+          </div>
+          <div class="p-8 pt-4">
+            <h3 class="font-display text-xl text-stone-150 mb-3">Roof Repairs</h3>
+            <p class="font-body text-stone-150/50 leading-relaxed text-sm" style="line-height:1.7;">Leaks, missing shingles, flashing damage, and ventilation issues. We diagnose the problem and fix it right the first time.</p>
+          </div>
+        </div>
+
+        <!-- Service 3: New Construction — house frame under construction -->
+        <div class="service-card reveal bg-slate-850 border border-white/5 rounded-2xl overflow-hidden group">
+          <div class="relative h-40 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1750500383359-c8a5107bf946?w=600&auto=format&fit=crop&q=80" alt="New house frame under construction" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-850 via-slate-850/40 to-transparent"></div>
+          </div>
+          <div class="p-8 pt-4">
+            <h3 class="font-display text-xl text-stone-150 mb-3">New Construction</h3>
+            <p class="font-body text-stone-150/50 leading-relaxed text-sm" style="line-height:1.7;">Building a new home? We work with builders and homeowners to install roofing systems that are built to last from day one.</p>
+          </div>
+        </div>
+
+        <!-- Service 4: Inspections — worker with clipboard at construction site -->
+        <div class="service-card reveal bg-slate-850 border border-white/5 rounded-2xl overflow-hidden group">
+          <div class="relative h-40 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1594581835488-0b95b8b0bacd?w=600&auto=format&fit=crop&q=80" alt="Two construction workers inspecting a job site together" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-850 via-slate-850/40 to-transparent"></div>
+          </div>
+          <div class="p-8 pt-4">
+            <h3 class="font-display text-xl text-stone-150 mb-3">Inspections</h3>
+            <p class="font-body text-stone-150/50 leading-relaxed text-sm" style="line-height:1.7;">Comprehensive roof inspections to catch small issues before they become big problems. Ideal after storms or before buying a home.</p>
+          </div>
+        </div>
+
+        <!-- Service 5: Storm Damage — lightning bolt in dark stormy sky -->
+        <div class="service-card reveal bg-slate-850 border border-white/5 rounded-2xl overflow-hidden group">
+          <div class="relative h-40 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1528485238486-507af7c0aa19?w=600&auto=format&fit=crop&q=80" alt="Lightning strike during a storm" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-850 via-slate-850/40 to-transparent"></div>
+          </div>
+          <div class="p-8 pt-4">
+            <h3 class="font-display text-xl text-stone-150 mb-3">Storm Damage</h3>
+            <p class="font-body text-stone-150/50 leading-relaxed text-sm" style="line-height:1.7;">Calgary hail is no joke. We handle emergency repairs and full storm damage restoration, including insurance claim assistance.</p>
+          </div>
+        </div>
+
+        <!-- Service 6: Siding & Exteriors — house exterior with gutters and fascia -->
+        <div class="service-card reveal bg-slate-850 border border-white/5 rounded-2xl overflow-hidden group">
+          <div class="relative h-40 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1694503222641-6b2154850501?w=600&auto=format&fit=crop&q=80" alt="House exterior showing siding, fascia and gutters" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-850 via-slate-850/40 to-transparent"></div>
+          </div>
+          <div class="p-8 pt-4">
+            <h3 class="font-display text-xl text-stone-150 mb-3">Siding & Exteriors</h3>
+            <p class="font-body text-stone-150/50 leading-relaxed text-sm" style="line-height:1.7;">Protect your entire exterior. We install and repair siding, fascia, soffit, and eavestroughs to complement your new roof.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHY US ==================== -->
+  <section id="why-us" class="relative py-24 lg:py-32 bg-slate-950 overflow-hidden">
+    <!-- Accent glow -->
+    <div class="absolute top-1/2 left-0 w-[500px] h-[500px] bg-copper-600/5 rounded-full blur-[150px] -translate-y-1/2 -translate-x-1/2"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Left: text -->
+        <div class="reveal">
+          <span class="text-copper-400 text-sm font-body font-semibold tracking-[0.2em] uppercase">Why Slope Style</span>
+          <h2 class="font-display text-4xl lg:text-5xl text-stone-150 mt-4 tracking-tight leading-[1.1]">Roofing You Can<br>Count On</h2>
+          <div class="accent-line mt-6 mb-8"></div>
+          <p class="font-body text-stone-150/55 text-base leading-relaxed mb-10" style="line-height:1.7;">
+            We're a local Calgary crew that takes pride in honest work and quality results. No shortcuts, no surprises — just roofing done right by people who live in the same neighborhoods we serve.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-copper-500/10 border border-copper-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-5 h-5 text-copper-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <h4 class="font-body font-semibold text-stone-150 text-sm mb-1">Licensed & Insured</h4>
+                <p class="font-body text-stone-150/45 text-xs leading-relaxed">Full liability coverage and WCB compliance for your protection.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-copper-500/10 border border-copper-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-5 h-5 text-copper-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <h4 class="font-body font-semibold text-stone-150 text-sm mb-1">Free Estimates</h4>
+                <p class="font-body text-stone-150/45 text-xs leading-relaxed">No obligation quotes. We'll assess your roof and give you an honest recommendation.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-copper-500/10 border border-copper-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-5 h-5 text-copper-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+              </div>
+              <div>
+                <h4 class="font-body font-semibold text-stone-150 text-sm mb-1">Local Calgary Team</h4>
+                <p class="font-body text-stone-150/45 text-xs leading-relaxed">We live here. We know the weather, the building codes, and the neighborhoods.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-copper-500/10 border border-copper-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-5 h-5 text-copper-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+              </div>
+              <div>
+                <h4 class="font-body font-semibold text-stone-150 text-sm mb-1">Quality Materials</h4>
+                <p class="font-body text-stone-150/45 text-xs leading-relaxed">We use top-tier products from trusted manufacturers, rated for Alberta conditions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: image -->
+        <div class="reveal">
+          <div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-850 border border-white/5">
+            <img src="https://images.unsplash.com/photo-1516880967556-b295d8e7b611?w=800&auto=format&fit=crop&q=80" alt="Roofing crew at work on a residential home" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-copper-600/10" style="mix-blend-mode: multiply;"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <div class="inline-flex items-center gap-2 bg-slate-950/70 backdrop-blur-sm border border-white/10 rounded-lg px-4 py-2.5">
+                <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+                <span class="font-body text-sm text-stone-150/80">Serving Calgary & Surrounding Areas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICE AREA ==================== -->
+  <section id="area" class="relative py-24 lg:py-32 bg-slate-900">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <span class="text-copper-400 text-sm font-body font-semibold tracking-[0.2em] uppercase">Where We Work</span>
+        <h2 class="font-display text-4xl lg:text-5xl text-stone-150 mt-4 tracking-tight">Service Area</h2>
+        <div class="accent-line mx-auto mt-6"></div>
+        <p class="font-body text-stone-150/55 text-base max-w-xl mx-auto mt-6" style="line-height:1.7;">
+          Based in NW Calgary, we serve the entire city and surrounding communities.
+        </p>
+      </div>
+
+      <div class="reveal grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div class="bg-slate-850 border border-white/5 rounded-xl px-5 py-4 text-center font-body text-sm text-stone-150/70 hover:border-copper-500/30 hover:text-copper-400 transition-colors">Panorama Hills</div>
+        <div class="bg-slate-850 border border-white/5 rounded-xl px-5 py-4 text-center font-body text-sm text-stone-150/70 hover:border-copper-500/30 hover:text-copper-400 transition-colors">Coventry Hills</div>
+        <div class="bg-slate-850 border border-white/5 rounded-xl px-5 py-4 text-center font-body text-sm text-stone-150/70 hover:border-copper-500/30 hover:text-copper-400 transition-colors">Evanston</div>
+        <div class="bg-slate-850 border border-white/5 rounded-xl px-5 py-4 text-center font-body text-sm text-stone-150/70 hover:border-copper-500/30 hover:text-copper-400 transition-colors">Tuscany</div>
+        <div class="bg-slate-850 border border-white/5 rounded-xl px-5 py-4 text-center font-body text-sm text-stone-150/70 hover:border-copper-500/30 hover:text-copper-400 transition-colors">Kincora</div>
+        <div class="bg-slate-850 border border-white/5 rounded-xl px-5 py-4 text-center font-body text-sm text-stone-150/70 hover:border-copper-500/30 hover:text-copper-400 transition-colors">Nolan Hill</div>
+        <div class="bg-slate-850 border border-white/5 rounded-xl px-5 py-4 text-center font-body text-sm text-stone-150/70 hover:border-copper-500/30 hover:text-copper-400 transition-colors">Sage Hill</div>
+        <div class="bg-slate-850 border border-white/5 rounded-xl px-5 py-4 text-center font-body text-sm text-stone-150/70 hover:border-copper-500/30 hover:text-copper-400 transition-colors">Airdrie</div>
+        <div class="bg-slate-850 border border-white/5 rounded-xl px-5 py-4 text-center font-body text-sm text-stone-150/70 hover:border-copper-500/30 hover:text-copper-400 transition-colors">Cochrane</div>
+        <div class="bg-slate-850 border border-white/5 rounded-xl px-5 py-4 text-center font-body text-sm text-stone-150/70 hover:border-copper-500/30 hover:text-copper-400 transition-colors">Okotoks</div>
+        <div class="bg-slate-850 border border-white/5 rounded-xl px-5 py-4 text-center font-body text-sm text-stone-150/70 hover:border-copper-500/30 hover:text-copper-400 transition-colors">Chestermere</div>
+        <div class="bg-copper-500/10 border border-copper-500/25 rounded-xl px-5 py-4 text-center font-body text-sm text-copper-400 font-medium">+ All of Calgary</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  <section class="relative py-24 lg:py-32 bg-slate-950 overflow-hidden">
+    <!-- Background image -->
+    <img src="https://images.unsplash.com/photo-1746350965171-07ca503c6d03?w=1920&auto=format&fit=crop&q=80" alt="" class="absolute inset-0 w-full h-full object-cover opacity-10" style="mix-blend-mode: luminosity;">
+    <div class="absolute inset-0 bg-slate-950/80"></div>
+    <!-- Background accents -->
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-copper-600/5 rounded-full blur-[150px] translate-x-1/2 -translate-y-1/2"></div>
+
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-8 text-center reveal">
+      <h2 class="font-display text-4xl lg:text-5xl text-stone-150 tracking-tight leading-[1.1] mb-6">
+        Ready to Protect<br>Your Home?
+      </h2>
+      <p class="font-body text-stone-150/55 text-lg max-w-xl mx-auto mb-10" style="line-height:1.7;">
+        Give us a call for a free, no-obligation estimate. We'll come take a look and give you an honest assessment of what your roof needs.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+        <a href="tel:+14032628909" class="btn-glow inline-flex items-center gap-3 bg-copper-500 hover:bg-copper-600 text-white font-body font-semibold text-lg px-10 py-5 rounded-xl shadow-lg shadow-copper-600/25">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          (403) 262-8909
+        </a>
+        <div class="flex items-center gap-3 text-stone-150/40">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          <span class="font-body text-sm">96 Panamount Ln NW, Calgary, AB</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-slate-900 border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <svg class="w-7 h-7 text-copper-500" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 28 L16 6 L30 28 Z"/>
+            <path d="M8 28 L16 14 L24 28" opacity="0.4"/>
+          </svg>
+          <div class="leading-none">
+            <span class="font-display text-base text-stone-150">Slope Style</span>
+            <span class="block text-[9px] font-body font-medium tracking-[0.2em] text-copper-400/70 uppercase">Roofing LTD</span>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 text-sm font-body text-stone-150/40">
+          <a href="tel:+14032628909" class="hover:text-copper-400 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-copper-500 rounded">(403) 262-8909</a>
+          <span class="hidden sm:inline">|</span>
+          <span>96 Panamount Ln NW, Calgary, AB T3K 5Y5</span>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-8 border-t border-white/5 text-center">
+        <p class="font-body text-xs text-stone-150/25">&copy; 2026 Slope Style Roofing LTD. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== JS ==================== -->
+  <script>
+    // Mobile nav toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const mobileNav = document.getElementById('mobileNav');
+
+    menuBtn.addEventListener('click', () => {
+      mobileNav.classList.add('open');
+      menuBtn.setAttribute('aria-expanded', 'true');
+    });
+    closeBtn.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    revealElements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
