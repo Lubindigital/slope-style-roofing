@@ -1,0 +1,23 @@
+Caddyfile
+Dockerfile
+.dockerignore
+.git
+.gitignore
+node_modules
+.vercel
+.vercel.v2-backup
+.vercelignore
+vercel.json
+temporary screenshots
+screenshots
+references
+scratchpad
+*.md
+screenshot.mjs
+serve.mjs
+check.mjs
+build.mjs
+package-lock.json
+.env*
+sales
+package.json

@@ -1,0 +1,25 @@
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT:8080} {
+	root * /srv
+	encode zstd gzip
+	# Clean URLs, as Vercel served them: /about -> about.html or about/index.html.
+	try_files {path} {path}.html {path}/index.html
+
+	# The platform's generated address is not the canonical URL: keep it out of search engines.
+	@generated header_regexp Host ^[A-Za-z0-9-]+\.ivyup\.io$
+	header @generated X-Robots-Tag noindex
+
+	# Assets: browsers keep them a day, the edge a week (a redeploy busts the edge).
+	@assets path_regexp \.(css|js|mjs|woff2?|ttf|otf|png|jpe?g|gif|webp|avif|svg|ico|mp4|webm|mp3|pdf)$
+	header @assets Cache-Control "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400"
+	# HTML and the rest: the browser always revalidates; the edge may serve it for an hour while a sleeping machine wakes.
+	@pages not path_regexp \.(css|js|mjs|woff2?|ttf|otf|png|jpe?g|gif|webp|avif|svg|ico|mp4|webm|mp3|pdf)$
+	header @pages Cache-Control "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400"
+	header -Server
+
+	file_server
+}
